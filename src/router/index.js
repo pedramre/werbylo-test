@@ -15,22 +15,6 @@ export default new Router({
             },
             component: () => import("@/views/Register"),
         },
-        // {
-        //     name: "login",
-        //     path: "/login",
-        //     meta:{
-        //         isAuth:false
-        //     },
-        //     component: () => import("@/views/Login")
-        // },
-        {
-            name: "register",
-            path: "/register",
-            meta:{
-                isAuth:false
-            },
-            component: () => import("@/views/Register")
-        },
         {
             name: "conversationalRegister",
             path: "/conversational-register",

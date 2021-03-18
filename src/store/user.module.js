@@ -72,7 +72,6 @@ const actions = {
                             reject(error.response.data['organization_phone'][0]);
                         }
                     }
-                    // reject(error)
                     return new Error(error);
                 });
 
