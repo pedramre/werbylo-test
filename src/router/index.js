@@ -31,5 +31,13 @@ export default new Router({
             },
             component: () => import("@/views/Register")
         },
+        {
+            name: "conversationalRegister",
+            path: "/conversational-register",
+            meta:{
+                isAuth:false
+            },
+            component: () => import("@/views/ConversationalRegister")
+        },
     ]
 });

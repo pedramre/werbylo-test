@@ -1,4 +1,4 @@
-import {REGISTER_USER} from "./actions.type";
+import {REGISTER_USER, REGISTER_USER_CHAT} from "./actions.type";
 import {RegisterService} from "../common/api.service";
 import {SET_CHATS} from "./mutations.type";
 
@@ -50,7 +50,35 @@ const actions = {
 
                 throw new Error(error);
             });
+    },
+    [REGISTER_USER_CHAT](context,payload) {
+        return new Promise((resolve,reject) => {
+            return RegisterService.post(payload)
+                .then(() => {
+                    return resolve();
+                })
+                .catch(error => {
+                    if(error.response.status === 422){
+                        if(payload.type === 'first_name'){
+                            reject(error.response.data['first_name'][0]);
+                        }
+                        if(payload.type === 'organization_name'){
+                            reject(error.response.data['organization_name'][0]);
+                        }
+                        if(payload.type === 'organization_email'){
+                            reject(error.response.data['organization_email'][0]);
+                        }
+                        if(payload.type === 'organization_phone'){
+                            reject(error.response.data['organization_phone'][0]);
+                        }
+                    }
+                    // reject(error)
+                    return new Error(error);
+                });
+
+        })
     }
+
 };
 
 const mutations = {
